@@ -1,0 +1,18 @@
+//image processor fsm.v
+//Modulo para a Maquina de Estados Finita (FSM) principal
+//Responsavel por controlar o fluxo de processamento e redimensionamento da imagem.
+
+module image_processor_fsm (
+	//entradas do sistema
+	input wire clk,    //sinal de clock principal
+	input wire reset_n, //sinal de reset assincrono (ativo baixo)
+	input wire btn_start  //botao que inicia o processamento 
+	input wire [1:0] sw mode, //chaves para selecionar o modo de operaçao (zoom/down scale)
+	
+	//saida para outros modulos
+	output reg [2:0] current_state, //estado atual da maquina
+	output reg start_fetch, //sinal para leitura de pixels
+	output reg start_process, //sinal para iniciar o processamento
+	output reg start_write,  //sinal que inicia a leitura de pixels 
+	
+	
